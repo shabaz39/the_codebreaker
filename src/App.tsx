@@ -32,11 +32,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-soft">
       {/* Promo Bar */}
-      <div className="bg-lavender-light text-center py-2 px-4">
-        <p className="text-sm text-gray-700">
-          Due to High Demand: We're Limiting Orders — Grab Yours Today!
+      <div className="promo-bar animate-bounce-gentle">
+        <p className="text-sm font-semibold">
+          🔥 Limited Time: Get Flat ₹250 OFF + Free Shipping Today Only!
         </p>
       </div>
 
@@ -44,16 +44,16 @@ function App() {
       <Header cartCount={cartCount} />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 animate-fade-in">
           {/* Product Gallery */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 animate-slide-up">
             <ProductGallery product={mockProduct} />
           </div>
 
           {/* Product Options */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 animate-slide-up" style={{animationDelay: '0.1s'}}>
             <ProductOptionsForm
               product={mockProduct}
               personalizationData={personalizationData}
@@ -65,54 +65,54 @@ function App() {
         </div>
 
         {/* Product Summary */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <p className="text-red-600 font-semibold text-lg mb-4">
-              Pay Online and Get Flat Rs. 250 OFF Today
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <div className="inline-block bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-full font-bold text-lg mb-8 shadow-large animate-bounce-gentle">
+              💰 Pay Online & Save ₹250 Today!
+            </div>
+            <h2 className="section-title text-gradient mb-6">
+              Inspire Your Child's Future Dreams
+            </h2>
+            <div className="max-w-4xl mx-auto space-y-6 text-gray-700 text-lg leading-relaxed">
+              <p className="text-xl font-medium text-gray-800">
+                Transform your child into the hero of their own career adventure with our beautifully personalized book.
             </p>
-            <div className="max-w-4xl mx-auto space-y-4 text-gray-700">
-              <p className="text-lg">
-                Give your child the gift of imagination and inspiration with The Dream Career Book - 
-                a personalized journey through exciting career possibilities that will spark their curiosity 
-                and build confidence for the future.
+              <p>
+                Watch their eyes light up as they discover exciting career possibilities - from astronaut to entrepreneur, 
+                doctor to artist. Each page features stunning illustrations with your child as the main character, 
+                building confidence and sparking curiosity about their bright future.
               </p>
               <p>
-                Each book features your child as the hero of their own career adventure, with beautiful 
-                illustrations and engaging activities that make learning about different professions fun 
-                and memorable. From doctor to astronaut, teacher to entrepreneur - watch your child's 
-                eyes light up as they see themselves in these important roles.
-              </p>
-              <p>
-                Simply upload your child's photo, choose their preferences, and we'll create a one-of-a-kind 
-                keepsake that celebrates their potential and dreams. Perfect for birthdays, holidays, or 
-                any time you want to show your child how special they are.
+                Simply upload their photo and personalize their journey. We'll create a premium, one-of-a-kind 
+                keepsake that celebrates their unlimited potential. Perfect for birthdays, achievements, or 
+                showing them how truly special they are.
               </p>
             </div>
           </div>
 
           {/* Photo Guidance */}
-          <div className="bg-gray-50 rounded-lg p-6 max-w-2xl mx-auto">
-            <h3 className="font-semibold text-gray-900 mb-4 text-center">
-              SEND A SMILING & FRONT FACING PHOTO
+          <div className="card p-8 max-w-3xl mx-auto shadow-glow">
+            <h3 className="font-display font-bold text-xl text-gray-900 mb-6 text-center">
+              📸 Photo Guidelines for Best Results
             </h3>
-            <div className="flex justify-center items-center space-x-8">
+            <div className="flex justify-center items-center space-x-12 mb-6">
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2">
-                  <span className="text-green-600 text-2xl">✓</span>
+                <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-500 rounded-2xl flex items-center justify-center mb-3 shadow-medium">
+                  <span className="text-white text-3xl font-bold">✓</span>
                 </div>
-                <p className="text-sm text-green-600 font-medium">Good</p>
-                <p className="text-xs text-gray-600">Smile + front face</p>
+                <p className="text-lg text-green-600 font-bold mb-1">Perfect!</p>
+                <p className="text-sm text-gray-600">Smiling + Front-facing</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-2">
-                  <span className="text-red-600 text-2xl">✗</span>
+                <div className="w-20 h-20 bg-gradient-to-br from-red-400 to-red-500 rounded-2xl flex items-center justify-center mb-3 shadow-medium">
+                  <span className="text-white text-3xl font-bold">✗</span>
                 </div>
-                <p className="text-sm text-red-600 font-medium">Avoid</p>
-                <p className="text-xs text-gray-600">Sunglasses, profile, blurry</p>
+                <p className="text-lg text-red-600 font-bold mb-1">Avoid</p>
+                <p className="text-sm text-gray-600">Sunglasses, Side view, Blurry</p>
               </div>
             </div>
-            <p className="text-center text-sm text-gray-600 mt-4">
-              Avoid blurry, profile, sunglasses — upload front-facing, well-lit photo.
+            <p className="text-center text-gray-600 bg-blue-50 p-4 rounded-xl">
+              💡 <strong>Pro Tip:</strong> Use a clear, well-lit photo where your child is looking directly at the camera with a natural smile for the best personalization results.
             </p>
           </div>
         </div>
@@ -131,19 +131,19 @@ function App() {
       <Footer />
 
       {/* Mobile Sticky Cart Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-50">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 glass-effect border-t border-white/30 p-4 z-50 shadow-large">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-lg font-bold text-gray-900">
+            <p className="text-xl font-bold text-gray-900">
               ₹{mockProduct.salePrice}
-              <span className="text-sm text-gray-500 line-through ml-2">
+              <span className="text-base text-gray-500 line-through ml-2">
                 ₹{mockProduct.originalPrice}
               </span>
             </p>
           </div>
           <button
             onClick={handleAddToCart}
-            className="bg-purple-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+            className="btn-primary"
           >
             Add to Cart
           </button>

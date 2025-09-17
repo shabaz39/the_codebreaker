@@ -1,23 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Global styles */
-* {
-  box-sizing: border-box;
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #fafafa;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold py-3 px-8 rounded-xl shadow-medium hover:shadow-large transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary-200;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-primary-700 border-2 border-primary-200 font-semibold py-3 px-8 rounded-xl shadow-soft hover:shadow-medium hover:border-primary-300 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-primary-100;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-soft hover:shadow-medium transition-all duration-300 overflow-hidden;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-3 focus:ring-primary-100 focus:border-primary-400 transition-all duration-200 bg-white;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-display font-bold text-gray-900 text-center mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12;
+  }
+
+  .feature-icon {
+    @apply w-16 h-16 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-soft;
+  }
+
+  .price-tag {
+    @apply bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-soft;
+  }
+
+  .rating-stars {
+    @apply flex items-center space-x-1;
+  }
+
+  .promo-bar {
+    @apply bg-gradient-to-r from-accent-400 to-accent-500 text-gray-900 text-center py-3 px-4 font-medium;
+  }
 }
 
-#root {
-  min-height: 100vh;
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+
+  .bg-gradient-soft {
+    background: linear-gradient(135deg, #fdf4ff 0%, #f0f9ff 100%);
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20;
+  }
+
+  .hover-lift {
+    @apply transform hover:-translate-y-1 transition-transform duration-200;
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.15);
+  }
 }
 
 /* Custom scrollbar */
@@ -26,14 +106,38 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f1f5f9;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: linear-gradient(to bottom, #d946ef, #c026d3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: linear-gradient(to bottom, #c026d3, #a21caf);
+}
+
+/* Loading animation */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .section-title {
+    @apply text-2xl;
+  }
+  
+  .btn-primary, .btn-secondary {
+    @apply py-4 px-6 text-base;
+  }
 }

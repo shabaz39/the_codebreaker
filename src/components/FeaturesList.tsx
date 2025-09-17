@@ -26,18 +26,21 @@ const FeaturesList: React.FC = () => {
   ];
 
   return (
-    <div className="bg-gray-50 rounded-lg p-8 mb-16">
-      <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
+    <div className="card p-12 mb-20 bg-gradient-soft">
+      <h2 className="section-title text-gradient mb-4">
         Why Choose The Dream Career Book?
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <p className="section-subtitle">
+        Premium quality, personalized storytelling that inspires and delights children worldwide.
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {features.map((feature, index) => (
-          <div key={index} className="text-center">
-            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <feature.icon className="w-8 h-8 text-purple-600" />
+          <div key={index} className="text-center group hover-lift">
+            <div className="feature-icon group-hover:shadow-glow transition-all duration-300">
+              <feature.icon className="w-10 h-10 text-primary-600 group-hover:scale-110 transition-transform" />
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">{feature.title}</h3>
-            <p className="text-sm text-gray-600">{feature.description}</p>
+            <h3 className="font-display font-bold text-xl text-gray-900 mb-3">{feature.title}</h3>
+            <p className="text-gray-600 leading-relaxed">{feature.description}</p>
           </div>
         ))}
       </div>

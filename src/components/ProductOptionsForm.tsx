@@ -25,64 +25,67 @@ const ProductOptionsForm: React.FC<ProductOptionsFormProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="card p-8 space-y-8 shadow-glow">
       {/* Product Title and Rating */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
-        <div className="flex items-center space-x-2 mb-4">
-          <div className="flex items-center">
+        <h1 className="text-4xl font-display font-bold text-gray-900 mb-4 leading-tight">{product.name}</h1>
+        <div className="flex items-center space-x-3 mb-6">
+          <div className="rating-stars">
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className={`w-5 h-5 ${
+                className={`w-6 h-6 ${
                   i < product.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
                 }`}
               />
             ))}
           </div>
-          <span className="text-sm text-gray-600">({product.reviewCount} reviews)</span>
+          <span className="text-base text-gray-600 font-medium">({product.reviewCount} reviews)</span>
         </div>
       </div>
 
       {/* Price */}
-      <div className="space-y-2">
-        <div className="flex items-center space-x-3">
-          <span className="text-3xl font-bold text-gray-900">₹{product.salePrice}</span>
-          <span className="text-xl text-gray-500 line-through">₹{product.originalPrice}</span>
-          <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-sm font-medium">
+      <div className="space-y-3 bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl">
+        <div className="flex items-center space-x-4 flex-wrap">
+          <span className="text-4xl font-bold text-gray-900">₹{product.salePrice}</span>
+          <span className="text-2xl text-gray-500 line-through">₹{product.originalPrice}</span>
+          <span className="price-tag">
             {Math.round(((product.originalPrice - product.salePrice) / product.originalPrice) * 100)}% OFF
           </span>
         </div>
-        <p className="text-green-600 font-medium">Free shipping on orders over ₹500</p>
+        <div className="flex items-center space-x-2">
+          <span className="text-2xl">🚚</span>
+          <p className="text-green-600 font-semibold text-lg">FREE Shipping + ₹250 Online Discount!</p>
+        </div>
       </div>
 
       {/* Personalization Form */}
-      <div className="space-y-4 border-t pt-6">
-        <h3 className="text-lg font-semibold text-gray-900">Personalize Your Book</h3>
+      <div className="space-y-6 border-t border-gray-100 pt-8">
+        <h3 className="text-2xl font-display font-bold text-gray-900 mb-6">✨ Personalize Your Book</h3>
         
         {/* Child Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-base font-semibold text-gray-700 mb-2">
             Child's Name *
           </label>
           <input
             type="text"
             value={personalizationData.childName}
             onChange={(e) => handleInputChange('childName', e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="input-field text-lg"
             placeholder="Enter child's name"
           />
         </div>
 
         {/* Child Age */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-base font-semibold text-gray-700 mb-2">
             Child's Age
           </label>
           <select
             value={personalizationData.childAge}
             onChange={(e) => handleInputChange('childAge', parseInt(e.target.value))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="input-field text-lg"
           >
             {[...Array(13)].map((_, i) => (
               <option key={i + 3} value={i + 3}>
@@ -94,42 +97,45 @@ const ProductOptionsForm: React.FC<ProductOptionsFormProps> = ({
 
         {/* Child Gender */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-base font-semibold text-gray-700 mb-2">
             Gender
           </label>
-          <div className="flex space-x-4">
-            <label className="flex items-center">
+          <div className="flex space-x-6">
+            <label className="flex items-center cursor-pointer bg-gray-50 px-6 py-3 rounded-xl hover:bg-primary-50 transition-colors">
               <input
                 type="radio"
                 value="boy"
                 checked={personalizationData.childGender === 'boy'}
                 onChange={(e) => handleInputChange('childGender', e.target.value)}
-                className="mr-2"
+                className="mr-3 w-5 h-5 text-primary-600"
               />
-              Boy
+              <span className="font-medium">👦 Boy</span>
             </label>
-            <label className="flex items-center">
+            <label className="flex items-center cursor-pointer bg-gray-50 px-6 py-3 rounded-xl hover:bg-primary-50 transition-colors">
               <input
                 type="radio"
                 value="girl"
                 checked={personalizationData.childGender === 'girl'}
                 onChange={(e) => handleInputChange('childGender', e.target.value)}
-                className="mr-2"
+                className="mr-3 w-5 h-5 text-primary-600"
               />
-              Girl
+              <span className="font-medium">👧 Girl</span>
             </label>
           </div>
         </div>
 
         {/* Photo Upload */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-base font-semibold text-gray-700 mb-2">
             Upload Child's Photo
           </label>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-            <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-            <p className="text-sm text-gray-600">
-              Click to upload or drag and drop
+          <div className="border-2 border-dashed border-primary-200 rounded-2xl p-8 text-center bg-primary-25 hover:bg-primary-50 transition-colors cursor-pointer group">
+            <Upload className="w-12 h-12 text-primary-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+            <p className="text-lg text-gray-700 font-medium mb-2">
+              📸 Click to upload or drag and drop
+            </p>
+            <p className="text-sm text-gray-500">
+              JPG, PNG or JPEG (Max 5MB)
             </p>
             <input
               type="file"
@@ -142,13 +148,13 @@ const ProductOptionsForm: React.FC<ProductOptionsFormProps> = ({
 
         {/* Quantity */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-base font-semibold text-gray-700 mb-2">
             Quantity
           </label>
           <select
             value={personalizationData.quantity}
             onChange={(e) => handleInputChange('quantity', parseInt(e.target.value))}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="input-field text-lg"
           >
             {[...Array(10)].map((_, i) => (
               <option key={i + 1} value={i + 1}>
@@ -160,18 +166,18 @@ const ProductOptionsForm: React.FC<ProductOptionsFormProps> = ({
       </div>
 
       {/* Action Buttons */}
-      <div className="space-y-3 pt-6">
+      <div className="space-y-4 pt-8">
         <button
           onClick={onBuyNow}
-          className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+          className="w-full btn-primary text-xl py-4"
         >
-          Buy Now
+          🚀 Buy Now - Get ₹250 OFF
         </button>
         <button
           onClick={onAddToCart}
-          className="w-full bg-white text-purple-600 border-2 border-purple-600 py-3 px-6 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
+          className="w-full btn-secondary text-xl py-4"
         >
-          Add to Cart
+          🛒 Add to Cart
         </button>
       </div>
     </div>
